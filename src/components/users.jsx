@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import api from "../api";
-import { pluralForm } from "../utils/pluralForm";
+import { renderPhrase } from "../utils/renderPhrase";
 
 export default function Users() {
   const [users, setUsers] = useState(api.users.fetchAll());
@@ -49,7 +49,7 @@ export default function Users() {
     <>
       <h1>
         <span className="badge bg-primary">
-          {pluralForm(users.length)} тусанет с тобой сегодня
+          {renderPhrase(users.length)} с тобой сегодня
         </span>
       </h1>
 
