@@ -17,7 +17,7 @@ const Bookmark = ({ user, onBookmark }) => {
 };
 
 Bookmark.propTypes = {
-    user: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired,
     onBookmark: PropTypes.func.isRequired
 };
 
