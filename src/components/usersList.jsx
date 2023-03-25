@@ -9,7 +9,7 @@ import { paginate } from "../utils/paginate";
 import GroupList from "./groupList";
 import UserTable from "./userTable";
 
-const Users = () => {
+const UsersList = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfessions] = useState();
     const [selectedProf, setSelectedProf] = useState();
@@ -114,10 +114,10 @@ const Users = () => {
     return "Loading";
 };
 
-Users.propTypes = {
+UsersList.propTypes = {
     users: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
     onBookmark: PropTypes.func.isRequired
 };
 
-export default Users;
+export default UsersList;
