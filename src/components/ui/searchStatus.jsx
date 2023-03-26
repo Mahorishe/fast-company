@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { renderPhrase } from "../utils/renderPhrase";
+import { renderPhrase } from "../../utils/renderPhrase";
 const SearchStatus = ({ countUsers }) => {
     return countUsers === 0 ? (
         <h1>

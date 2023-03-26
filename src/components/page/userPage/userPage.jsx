@@ -1,10 +1,10 @@
 import { React, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import api from "../api";
-import Qualitie from "./qualitie";
+import api from "../../../api";
+import Qualitie from "../../ui/qualitie";
 
-const User = ({ userId }) => {
+const UserPage = ({ userId }) => {
     const [user, setUser] = useState();
     const hist = useHistory();
     useEffect(() => {
@@ -31,8 +31,8 @@ const User = ({ userId }) => {
     return "Loading...";
 };
 
-User.propTypes = {
+UserPage.propTypes = {
     userId: PropTypes.string.isRequired
 };
 
-export default User;
+export default UserPage;

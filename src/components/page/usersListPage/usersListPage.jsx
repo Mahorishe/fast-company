@@ -1,16 +1,16 @@
 import { React, useEffect, useState } from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
-import SearchStatus from "./searchStatus";
+import SearchStatus from "../../ui/searchStatus";
 
-import Pagination from "./pagination";
-import api from "../api";
-import { paginate } from "../utils/paginate";
-import GroupList from "./groupList";
-import UserTable from "./userTable";
-import SearchUser from "./searchUser";
+import Pagination from "../../common/pagination";
+import api from "../../../api";
+import { paginate } from "../../../utils/paginate";
+import GroupList from "../../common/groupList";
+import UserTable from "../../ui/userTable";
+import SearchUser from "../../ui/searchUser";
 
-const UsersList = () => {
+const UsersListPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfessions] = useState();
     const [selectedProf, setSelectedProf] = useState();
@@ -138,10 +138,10 @@ const UsersList = () => {
     return "Loading";
 };
 
-UsersList.propTypes = {
+UsersListPage.propTypes = {
     users: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
     onBookmark: PropTypes.func.isRequired
 };
 
-export default UsersList;
+export default UsersListPage;

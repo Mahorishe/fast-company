@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Bookmark from "./bookmark";
+import Bookmark from "../common/bookmark";
 import Qualitie from "./qualitie";
-import Table from "./table";
+import Table from "../common/table/table";
 import { Link } from "react-router-dom";
 // import User from "./user";
 
