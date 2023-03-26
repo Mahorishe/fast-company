@@ -46,9 +46,7 @@ const Login = () => {
     const handleFinish = (e) => {
         e.preventDefault();
         const isValid = validate();
-        console.log("isValid", isValid);
-        if (!isValid) return;
-        console.log(data);
+        if (!isValid) return null;
     };
     return (
         <div className="container">

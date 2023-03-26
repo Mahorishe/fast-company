@@ -16,7 +16,6 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
     };
 
     const renderIcon = (item) => {
-        console.log(item);
         if (selectedSort.path === item.path) {
             const icon =
                 selectedSort.order === "asc" ? (

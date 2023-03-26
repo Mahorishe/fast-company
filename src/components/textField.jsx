@@ -10,7 +10,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
     };
     return (
         <div className="mb-4">
-            <label htmlFor={name}>{label}</label>
+            {label === "" && <label htmlFor={name}>{label}</label>}
             <div className="input-group has-validation">
                 <input
                     type={showPassword ? "text" : type}
@@ -19,6 +19,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
                     value={value}
                     onChange={onChange}
                     className={getInputClasses()}
+                    placeholder={name === "searchUser" ? "Поиск..." : ""}
                 />
                 {type === "password" && (
                     <button
@@ -40,7 +41,9 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
 };
 
 PropTypes.defaultProps = {
-    type: "text"
+    type: "text",
+    error: {},
+    label: ""
 };
 TextField.propTypes = {
     label: PropTypes.string,

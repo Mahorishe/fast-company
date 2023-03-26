@@ -8,6 +8,7 @@ import api from "../api";
 import { paginate } from "../utils/paginate";
 import GroupList from "./groupList";
 import UserTable from "./userTable";
+import SearchUser from "./searchUser";
 
 const UsersList = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,10 +16,15 @@ const UsersList = () => {
     const [selectedProf, setSelectedProf] = useState();
     const [sorter, setSorter] = useState({ path: "name", order: "asc" });
     const [users, setUsers] = useState();
+    const [originalUsers, setOriginalUsers] = useState();
+    const [clearSearchValue, setClearSearchValue] = useState(false);
     const pageSize = 4;
 
     useEffect(() => {
-        api.users.fetchAll().then((data) => setUsers(data));
+        api.users.fetchAll().then((data) => {
+            setUsers(data);
+            setOriginalUsers(data);
+        });
     }, []);
 
     useEffect(() => {
@@ -30,6 +36,7 @@ const UsersList = () => {
 
     const handleProfessionSelect = (item) => {
         setSelectedProf(item);
+        setClearSearchValue(true);
     };
     const handelPageChange = (page) => {
         setCurrentPage(page);
@@ -53,6 +60,17 @@ const UsersList = () => {
                     : { ...user };
             })
         );
+    };
+
+    const handleSearchUser = (inputValue) => {
+        if (inputValue === "") {
+            setUsers(originalUsers);
+        } else {
+            const filteredUsers = originalUsers.filter((user) =>
+                user.name.toLowerCase().includes(inputValue.toLowerCase())
+            );
+            setUsers(filteredUsers);
+        }
     };
     if (users) {
         const filteredUsers = selectedProf
@@ -90,6 +108,12 @@ const UsersList = () => {
                 )}
                 <div className="d-flex flex-column">
                     <SearchStatus countUsers={usersCount} />
+                    <SearchUser
+                        onSearchUser={handleSearchUser}
+                        onClearProf={clearFilter}
+                        clearValue={clearSearchValue}
+                        onClearValueChange={() => setClearSearchValue(false)}
+                    />
                     {usersCount !== 0 && (
                         <UserTable
                             users={pageUsers}
