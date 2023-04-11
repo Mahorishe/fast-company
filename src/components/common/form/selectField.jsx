@@ -4,46 +4,43 @@ import PropTypes from "prop-types";
 const SelectField = ({
     label,
     value,
-    name,
     onChange,
-    defaultValue,
+    defaultOption,
     options,
-    error
+    error,
+    name
 }) => {
-    const optionsArray =
-        !Array.isArray(options) && typeof options === "object"
-            ? Object.key(options).map((optionName) => {
-                  return {
-                      name: options[optionName].name,
-                      value: options[optionName]._id
-                  };
-              })
-            : options;
     const handleChange = ({ target }) => {
         onChange({ name: target.name, value: target.value });
     };
     const getInputClasses = () => {
         return "form-select" + (error ? " is-invalid" : "");
     };
+
+    const optionsArray =
+        !Array.isArray(options) && typeof options === "object"
+            ? Object.values(options)
+            : options;
+
     return (
         <div className="mb-4">
-            <label htmlFor="validationCustom04" className="form-label">
+            <label htmlFor={name} className="form-label">
                 {label}
             </label>
             <select
                 className={getInputClasses()}
-                id="validationCustom04"
+                id={name}
                 name={name}
                 value={value}
                 onChange={handleChange}
             >
-                <option key={""} value="">
-                    {defaultValue}
+                <option disabled value="">
+                    {defaultOption}
                 </option>
-                {optionsArray &&
+                {optionsArray.length > 0 &&
                     optionsArray.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.name}
+                        <option value={option.value} key={option.value}>
+                            {option.label}
                         </option>
                     ))}
             </select>
@@ -53,13 +50,13 @@ const SelectField = ({
 };
 
 SelectField.propTypes = {
+    defaultOption: PropTypes.string,
     label: PropTypes.string,
-    name: PropTypes.string,
-    defaultValue: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    options: PropTypes.oneOfType(PropTypes.object, PropTypes.array),
-    error: PropTypes.string
+    error: PropTypes.string,
+    options: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    name: PropTypes.string
 };
 
 export default SelectField;

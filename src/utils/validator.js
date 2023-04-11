@@ -11,7 +11,6 @@ export const validator = (data, config) => {
                 }
                 break;
             }
-
             case "isEmail": {
                 const emailRegExp = /^\S+@\S+\.\S+$/g;
                 statusValidate = !emailRegExp.test(data);

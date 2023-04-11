@@ -2,10 +2,25 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import UsersListPage from "../components/page/usersListPage";
 import UserPage from "../components/page/userPage";
+import EditUserPage from "../components/page/editUserPage/editUserPage";
 
 const Users = () => {
-    const { id } = useParams();
-    return <>{id ? <UserPage userId={id} /> : <UsersListPage />}</>;
+    const params = useParams();
+    console.log(params);
+    const { userId, edit } = params;
+    return (
+        <>
+            {userId ? (
+                edit ? (
+                    <EditUserPage userId={userId} />
+                ) : (
+                    <UserPage userId={userId} />
+                )
+            ) : (
+                <UsersListPage />
+            )}
+        </>
+    );
 };
 
 export default Users;

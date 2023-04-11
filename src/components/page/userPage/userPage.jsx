@@ -25,6 +25,9 @@ const UserPage = ({ userId }) => {
                 <button onClick={() => handleAllUser()}>
                     Все пользователи
                 </button>
+                <button onClick={() => hist.push(`/users/${userId}/edit`)}>
+                    Изменить
+                </button>
             </>
         );
     }

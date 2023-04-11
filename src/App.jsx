@@ -10,9 +10,9 @@ const App = () => {
         <>
             <NavBar />
             <Switch>
-                <Route path="/" exact component={Main} />
+                <Route path="/users/:userId?/:edit?" component={Users} />
                 <Route path="/login/:type?" component={Login} />
-                <Route path="/users/:id?" component={Users} />
+                <Route path="/" exact component={Main} />
             </Switch>
         </>
     );
